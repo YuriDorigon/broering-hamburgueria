@@ -1,22 +1,67 @@
-# CODING AGENTS: READ THIS FIRST
+# 🍔 Broering Hamburgueria — Site Institucional
 
-This is a **handoff bundle** from Claude Design (claude.ai/design).
+Site landing page para a **Broering Burguer**, hamburgueria artesanal localizada em São José / SC.
 
-A user mocked up designs in HTML/CSS/JS using an AI design tool, then exported this bundle so a coding agent can implement the designs for real.
+## 🔗 Links
 
-## What you should do — IMPORTANT
+- **Site ao vivo:** https://broering-hamburgueria-yuridorigons-projects.vercel.app
+- **Repositório:** https://github.com/YuriDorigon/broering-hamburgueria
+- **Pedido online:** https://app.anota.ai/p/broering-burguer-1
+- **Instagram:** https://instagram.com/broeringburguer
 
-**Read `broering-hamburgueria/project/Broering Hamburgueria.html` in full.** The user had this file open when they triggered the handoff, so it's almost certainly the primary design they want built. Read it top to bottom — don't skim. Then **follow its imports**: open every file it pulls in (shared components, CSS, scripts) so you understand how the pieces fit together before you start implementing.
+## 📋 Sobre o projeto
 
-**If anything is ambiguous, ask the user to confirm before you start implementing.** It's much cheaper to clarify scope up front than to build the wrong thing.
+Landing page institucional com cardápio completo, informações de contato e links para pedido online. Desenvolvido como projeto freelance.
 
-## About the design files
+### Seções
+- **Hero** — apresentação com CTA para pedido
+- **Sobre** — história e stats da hamburgueria
+- **Cardápio** — 13 hambúrgueres com fotos e preços reais
+- **Diferenciais** — pão artesanal, carne selecionada, molhos da casa
+- **Contato** — endereço, WhatsApp, Instagram, horários, formas de pagamento
 
-The design medium is **HTML/CSS/JS** — these are prototypes, not production code. Your job is to **recreate them pixel-perfectly** in whatever technology makes sense for the target codebase (React, Vue, native, whatever fits). Match the visual output; don't copy the prototype's internal structure unless it happens to fit.
+## 🛠️ Tech stack
 
-**Don't render these files in a browser or take screenshots unless the user asks you to.** Everything you need — dimensions, colors, layout rules — is spelled out in the source. Read the HTML and CSS directly; a screenshot won't tell you anything they don't.
+- HTML5 + CSS3 puro (sem framework)
+- Vite (dev server + build)
+- Fontes: Anton, Oswald, Caveat, Manrope (Google Fonts)
+- Imagens: CDN Anota.ai (`client-assets.anota.ai`)
+- Deploy: Vercel + GitHub
 
-## Bundle contents
+## 🚀 Rodar localmente
 
-- `broering-hamburgueria/README.md` — this file
-- `broering-hamburgueria/project/` — the `Broering Hamburgueria` project files (HTML prototypes, assets, components)
+```bash
+npm install
+npm run dev
+```
+
+Acessa em `http://localhost:5173`
+
+## 📦 Build para produção
+
+```bash
+npm run build
+npm run preview
+```
+
+## 🔄 Atualizar cardápio
+
+Quando o cardápio mudar no Anota.ai:
+
+1. Abrir `pedido.anota.ai/loja/broering-burguer-1` no browser
+2. F12 → inspecionar `<section class="home">` → Copy element
+3. Salvar como `anota.html` na pasta do projeto
+4. Rodar `node extract-menu.js`
+5. Atualizar `index.html` com os dados do `menu.json`
+
+## 📍 Dados da loja
+
+| Campo | Info |
+|-------|------|
+| Endereço | Rua Princesa Isabel, 55 · Forquilhinhas · São José / SC |
+| CEP | 88106-730 |
+| WhatsApp | (48) 98465-3311 |
+| Instagram | @broeringburguer |
+| Seg–Qui | 19h30 — 00h30 |
+| Sex–Sáb | 19h30 — 01h30 |
+| Domingo | Fechado |
