@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Broering Burguer — Hamburgueria Artesanal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Caveat:wght@500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1a0e08;
+  --ink-2:#2a1810;
+  --coffee:#3a2419;
+  --brick:#8b3416;
+  --brick-2:#a14021;
+  --ember:#c45826;
+  --mustard:#d4a24c;
+  --mustard-2:#e7b961;
+  --cream:#f5ead2;
+  --cream-2:#ede0c2;
+  --paper:#f0e3c5;
+  --line: rgba(26,14,8,.18);
+  --shadow: 0 30px 60px -20px rgba(26,14,8,.45), 0 8px 20px -8px rgba(26,14,8,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:"Manrope", system-ui, sans-serif;
+  color:var(--ink);
+  background:var(--cream);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ============ PAPER + WOOD TEXTURES ============ */
+.paper{
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(139,52,22,.05) 0, transparent 60%),
+    radial-gradient(circle at 80% 70%, rgba(58,36,25,.07) 0, transparent 50%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.09  0 0 0 0 0.05  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.wood{
+  background-color:#2a1810;
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,.15), transparent 30%, transparent 70%, rgba(0,0,0,.25)),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='w'><feTurbulence type='turbulence' baseFrequency='0.015 0.6' numOctaves='3' seed='2'/><feColorMatrix values='0 0 0 0 0.14  0 0 0 0 0.07  0 0 0 0 0.03  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
+}
+.brick{
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.28), transparent 35%, transparent 65%, rgba(0,0,0,.45)),
+    repeating-linear-gradient( 0deg,
+      #6e2912 0, #6e2912 38px,
+      #1a0e08 38px, #1a0e08 42px),
+    repeating-linear-gradient( 90deg,
+      transparent 0, transparent 119px,
+      #1a0e08 119px, #1a0e08 122px,
+      transparent 122px, transparent 240px,
+      #1a0e08 240px, #1a0e08 243px,
+      transparent 243px, transparent 360px),
+    #8b3416;
+  background-blend-mode: normal, multiply, normal;
+  position:relative;
+}
+.brick::after{
+  content:"";position:absolute;inset:0;
+  background: radial-gradient(ellipse at 50% 50%, transparent 0, rgba(0,0,0,.55) 100%);
+  pointer-events:none;
+}
+
+/* ============ NAV ============ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background: rgba(26,14,8,.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(245,234,210,.08);
+  color:var(--cream);
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;
+  padding:14px 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.brand{
+  display:flex;align-items:center;gap:14px;
+}
+.brand .logo{
+  width:48px;height:48px;border-radius:50%;
+  background:#000;
+  box-shadow: 0 0 0 2px var(--mustard), 0 8px 20px -8px rgba(0,0,0,.6);
+  overflow:hidden;
+}
+.brand .logo img{width:100%;height:100%;object-fit:cover}
+.brand .word{
+  font-family:"Anton", sans-serif;
+  letter-spacing:.04em;
+  font-size:22px;
+  line-height:1;
+  color:var(--cream);
+}
+.brand .word small{
+  display:block;
+  font-family:"Caveat", cursive;
+  font-size:14px;
+  color:var(--mustard);
+  letter-spacing:.02em;
+  margin-top:2px;
+}
+.nav-links{
+  display:flex;gap:38px;align-items:center;
+  font-family:"Oswald", sans-serif;
+  font-weight:500;
+  font-size:14px;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.nav-links a{
+  position:relative;
+  padding:6px 0;
+  color: rgba(245,234,210,.85);
+  transition:color .2s;
+}
+.nav-links a:hover{color:var(--mustard-2)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;
+  background:var(--mustard);
+  transform:scaleX(0);transform-origin:left;transition:transform .25s ease;
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-cta{
+  background:var(--mustard);
+  color:var(--ink);
+  padding:10px 18px;
+  border-radius:2px;
+  font-family:"Oswald",sans-serif;
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  transition:background .2s, transform .15s;
+}
+.nav-cta:hover{background:var(--mustard-2);transform:translateY(-1px)}
+
+@media (max-width:780px){
+  .nav-links{display:none}
+}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;
+  min-height: 92vh;
+  overflow:hidden;
+  display:flex;align-items:center;
+  color:var(--cream);
+}
+.hero .bg{position:absolute;inset:0;z-index:0}
+.hero .bg::before{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(115deg, rgba(26,14,8,.95) 0%, rgba(26,14,8,.7) 40%, rgba(26,14,8,.15) 70%, rgba(26,14,8,.55) 100%),
+    radial-gradient(circle at 80% 50%, rgba(212,162,76,.18), transparent 50%);
+  z-index:1;
+}
+.hero-inner{
+  position:relative;z-index:2;
+  max-width:1280px;margin:0 auto;
+  padding: 90px 32px 110px;
+  display:grid;grid-template-columns: 1.05fr .95fr;gap:60px;align-items:center;
+  width:100%;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:"Oswald",sans-serif;
+  font-weight:500;
+  font-size:13px;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:var(--mustard-2);
+  margin-bottom:22px;
+}
+.hero-eyebrow .dash{width:48px;height:1px;background:var(--mustard);display:inline-block}
+.hero h1{
+  font-family:"Anton",sans-serif;
+  font-weight:400;
+  font-size: clamp(64px, 9.5vw, 168px);
+  line-height:.86;
+  margin:0 0 10px;
+  letter-spacing:.005em;
+  color:var(--cream);
+  text-shadow: 0 4px 30px rgba(0,0,0,.4);
+}
+.hero h1 .row2{
+  display:block;
+  color:var(--mustard);
+  font-style:italic;
+  font-family:"Anton",sans-serif;
+}
+.hero .script{
+  font-family:"Caveat", cursive;
+  color:var(--mustard-2);
+  font-size: clamp(26px, 3vw, 38px);
+  transform: rotate(-3deg);
+  display:inline-block;
+  margin: 4px 0 18px;
+}
+.hero-sub{
+  font-family:"Manrope",sans-serif;
+  font-size:18px;line-height:1.6;
+  color: rgba(245,234,210,.82);
+  max-width:480px;
+  margin: 22px 0 36px;
+}
+.btn-row{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:16px 26px;
+  border-radius:2px;
+  font-family:"Oswald",sans-serif;font-weight:600;
+  font-size:14px;letter-spacing:.2em;text-transform:uppercase;
+  transition:transform .15s, background .2s, color .2s, border-color .2s;
+  cursor:pointer;border:0;
+}
+.btn-primary{background:var(--mustard);color:var(--ink)}
+.btn-primary:hover{background:var(--mustard-2);transform:translateY(-2px)}
+.btn-ghost{background:transparent;color:var(--cream);border:1.5px solid rgba(245,234,210,.4)}
+.btn-ghost:hover{border-color:var(--mustard);color:var(--mustard)}
+.btn .arrow{transition:transform .2s}
+.btn:hover .arrow{transform:translateX(4px)}
+
+.hero-photo{
+  position:relative;
+  aspect-ratio: 4/4.6;
+  border-radius:4px;
+  overflow:hidden;
+  box-shadow: var(--shadow), 0 0 0 1px rgba(245,234,210,.06);
+  transform: rotate(1.5deg);
+}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
+.hero-photo::after{
+  content:"";position:absolute;inset:0;
+  background: linear-gradient(180deg, transparent 60%, rgba(26,14,8,.5));
+  pointer-events:none;
+}
+.hero-photo .tag{
+  position:absolute;bottom:18px;left:18px;right:18px;
+  display:flex;align-items:end;justify-content:space-between;gap:12px;
+  color:var(--cream);
+  z-index:2;
+}
+.hero-photo .tag .name{
+  font-family:"Anton",sans-serif;
+  font-size:30px;line-height:1;letter-spacing:.02em;
+}
+.hero-photo .tag .price{
+  font-family:"Oswald",sans-serif;font-weight:600;
+  font-size:14px;letter-spacing:.2em;
+  background:var(--mustard);color:var(--ink);
+  padding:6px 10px;border-radius:2px;
+  white-space:nowrap;
+}
+
+.hero-stamp{
+  position:absolute;
+  top:-22px;right:-22px;
+  width:130px;height:130px;border-radius:50%;
+  background:var(--brick);
+  color:var(--cream);
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-family:"Oswald",sans-serif;font-weight:600;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  line-height:1.25;
+  transform:rotate(-12deg);
+  box-shadow: 0 0 0 3px var(--cream-2), 0 0 0 4px var(--brick), 0 12px 24px -10px rgba(0,0,0,.6);
+  z-index:3;
+}
+.hero-stamp strong{display:block;font-family:"Anton",sans-serif;font-weight:400;font-size:28px;letter-spacing:.03em;color:var(--mustard-2);line-height:1}
+
+.hero-meta{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  border-top:1px solid rgba(245,234,210,.12);
+  background:rgba(26,14,8,.55);
+  backdrop-filter: blur(6px);
+}
+.hero-meta-inner{
+  max-width:1280px;margin:0 auto;padding:18px 32px;
+  display:flex;gap:42px;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  font-family:"Oswald",sans-serif;font-size:13px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(245,234,210,.78);
+}
+.hero-meta .dot{width:6px;height:6px;border-radius:50%;background:#7bd47b;display:inline-block;margin-right:10px;box-shadow:0 0 0 4px rgba(123,212,123,.18)}
+.hero-meta span b{color:var(--mustard-2);font-weight:600}
+
+@media (max-width: 900px){
+  .hero-inner{grid-template-columns:1fr;padding:64px 24px 100px}
+  .hero-photo{max-width:480px;margin:0 auto}
+  .hero-stamp{width:104px;height:104px;top:-12px;right:-12px}
+}
+
+/* ============ SECTION CHROME ============ */
+section{position:relative}
+.container{max-width:1280px;margin:0 auto;padding:140px 32px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:14px;
+  font-family:"Oswald",sans-serif;font-weight:500;
+  font-size:13px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--brick);
+}
+.eyebrow .dash{width:42px;height:1px;background:var(--brick)}
+.section-title{
+  font-family:"Anton",sans-serif;font-weight:400;
+  font-size: clamp(46px, 6.5vw, 96px);
+  line-height:.9;
+  letter-spacing:.01em;
+  margin: 16px 0 22px;
+  color:var(--ink);
+}
+.section-title .it{font-style:italic;color:var(--brick)}
+.lead{
+  font-size:18px;line-height:1.65;color:var(--coffee);
+  max-width:60ch;
+}
+
+/* ============ SOBRE ============ */
+.sobre{background:var(--cream)}
+.sobre-grid{
+  display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center;
+}
+.sobre p{
+  font-size:17px;line-height:1.75;color:var(--coffee);
+  margin: 0 0 18px;
+}
+.sobre p:first-of-type::first-letter{
+  font-family:"Anton",sans-serif;
+  float:left;
+  font-size:72px;line-height:.85;
+  padding: 6px 14px 0 0;
+  color:var(--brick);
+}
+.sobre-photo{
+  position:relative;
+  aspect-ratio: 4/4.4;
+  background: var(--ink-2);
+  overflow:hidden;
+  box-shadow: var(--shadow);
+}
+.sobre-photo .bg{position:absolute;inset:0}
+.sobre-photo .bg::after{
+  content:"";position:absolute;inset:0;
+  background: linear-gradient(180deg, rgba(26,14,8,.1), rgba(26,14,8,.7));
+}
+.sobre-photo .frame-text{
+  position:absolute;left:24px;right:24px;bottom:24px;color:var(--cream);
+  font-family:"Caveat",cursive;font-size:22px;
+}
+.sobre-photo .frame-text b{
+  display:block;
+  font-family:"Anton",sans-serif;font-weight:400;
+  font-size:38px;letter-spacing:.02em;
+  color:var(--mustard-2);
+  margin-bottom:4px;
+}
+.sobre-since{
+  position:absolute;top:-26px;left:-26px;
+  width:120px;height:120px;border-radius:50%;
+  background:var(--mustard);color:var(--ink);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-family:"Oswald",sans-serif;font-weight:600;
+  font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  box-shadow: 0 0 0 2px var(--ink), 0 14px 26px -10px rgba(0,0,0,.5);
+  transform:rotate(-8deg);
+  z-index:2;
+}
+.sobre-since b{font-family:"Anton",sans-serif;font-weight:400;font-size:32px;letter-spacing:.04em;margin-top:2px}
+
+.stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:24px;margin-top:48px;padding-top:38px;
+  border-top:1px solid var(--line);
+}
+.stat b{
+  display:block;font-family:"Anton",sans-serif;font-weight:400;
+  font-size:54px;line-height:1;color:var(--brick);
+  letter-spacing:.02em;
+}
+.stat span{
+  display:block;font-family:"Oswald",sans-serif;font-size:12px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--coffee);
+  margin-top:8px;
+}
+
+@media (max-width: 860px){
+  .sobre-grid{grid-template-columns:1fr;gap:60px}
+  .stats{grid-template-columns:repeat(3,1fr);gap:14px}
+  .stat b{font-size:38px}
+}
+
+/* ============ CARDÁPIO ============ */
+.menu{background: var(--ink);color:var(--cream);position:relative;overflow:hidden}
+.menu::before{
+  content:"";position:absolute;inset:0;opacity:.18;pointer-events:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='600'><filter id='w'><feTurbulence type='turbulence' baseFrequency='0.015 0.6' numOctaves='3' seed='2'/><feColorMatrix values='0 0 0 0 0.14  0 0 0 0 0.07  0 0 0 0 0.03  0 0 0 .7 0'/></filter><rect width='100%' height='100%' filter='url(%23w)'/></svg>");
+}
+.menu .eyebrow{color:var(--mustard)}
+.menu .eyebrow .dash{background:var(--mustard)}
+.menu .section-title{color:var(--cream)}
+.menu .section-title .it{color:var(--mustard)}
+.menu .lead{color: rgba(245,234,210,.7)}
+.menu-head{
+  display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;
+  margin-bottom:70px;
+}
+.menu-head .right{
+  font-family:"Caveat",cursive;font-size:22px;
+  color: rgba(245,234,210,.6);
+  max-width:260px;text-align:right;
+}
+.menu-head .right b{display:block;color:var(--mustard);font-size:30px;line-height:1.1}
+
+.menu-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+}
+.dish{
+  position:relative;
+  background: rgba(245,234,210,.04);
+  border:1px solid rgba(245,234,210,.08);
+  overflow:hidden;
+  transition: transform .25s, border-color .25s, background .25s;
+}
+.dish:hover{transform:translateY(-6px);border-color:rgba(212,162,76,.6);background:rgba(245,234,210,.06)}
+.dish .photo{
+  position:relative;aspect-ratio: 4/3.4;overflow:hidden;background:#0c0603;
+}
+.dish .photo img{
+  width:100%;height:100%;object-fit:cover;
+  transition: transform .6s ease, filter .4s;
+  filter:saturate(.95) brightness(.92);
+}
+.dish:hover .photo img{transform:scale(1.06);filter:saturate(1.05) brightness(1)}
+.dish .photo .price{
+  position:absolute;top:14px;right:14px;
+  background:var(--mustard);color:var(--ink);
+  font-family:"Oswald",sans-serif;font-weight:700;
+  font-size:14px;letter-spacing:.06em;
+  padding:8px 12px;border-radius:2px;
+  white-space:nowrap;
+  box-shadow: 0 6px 14px -6px rgba(0,0,0,.5);
+}
+.dish .photo .code{
+  position:absolute;top:14px;left:14px;
+  background:rgba(26,14,8,.7);color:var(--mustard-2);
+  border:1px solid rgba(212,162,76,.4);
+  font-family:"Oswald",sans-serif;font-weight:600;font-size:11px;
+  letter-spacing:.2em;
+  white-space:nowrap;
+  padding:5px 9px;
+}
+.dish .body{padding:22px 22px 26px}
+.dish h3{
+  font-family:"Anton",sans-serif;font-weight:400;
+  font-size:26px;line-height:1;letter-spacing:.02em;
+  color:var(--cream);margin:0 0 10px;
+}
+.dish p{
+  font-size:14px;line-height:1.6;color:rgba(245,234,210,.65);margin:0;
+}
+.dish .meta{
+  margin-top:18px;padding-top:14px;border-top:1px dashed rgba(245,234,210,.18);
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:"Oswald",sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,234,210,.55);
+}
+.dish .meta .heart{color:var(--brick-2);font-size:13px}
+
+.menu-cta{
+  margin-top:58px;display:flex;justify-content:center;
+}
+
+@media (max-width:1100px){.menu-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:520px){.menu-grid{grid-template-columns:1fr}}
+
+/* ============ DIFERENCIAIS ============ */
+.differ{background: var(--cream-2);position:relative;overflow:hidden}
+.differ::before{
+  content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/><feColorMatrix values='0 0 0 0 0.16  0 0 0 0 0.09  0 0 0 0 0.05  0 0 0 .08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+.differ-head{text-align:center;margin-bottom:80px}
+.differ-head .eyebrow{justify-content:center}
+.differ-head .lead{margin:0 auto}
+.differs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:48px;
+}
+.differ-card{
+  text-align:center;padding: 14px 18px;
+  position:relative;
+}
+.differ-card .icon{
+  width:108px;height:108px;border-radius:50%;
+  margin:0 auto 28px;
+  background: var(--ink);
+  color:var(--mustard);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow: 0 0 0 1px var(--ink), 0 0 0 8px var(--cream-2), 0 0 0 9px var(--ink), 0 18px 32px -16px rgba(0,0,0,.4);
+  position:relative;
+}
+.differ-card .icon svg{width:56px;height:56px}
+.differ-card h3{
+  font-family:"Anton",sans-serif;font-weight:400;
+  font-size:34px;line-height:1;letter-spacing:.02em;margin:0 0 14px;
+  color:var(--ink);
+}
+.differ-card .script{
+  display:inline-block;font-family:"Caveat",cursive;color:var(--brick);
+  font-size:22px;margin:0 0 12px;transform:rotate(-2deg);
+}
+.differ-card p{
+  font-size:15px;line-height:1.65;color:var(--coffee);margin:0;max-width:32ch;margin:0 auto;
+}
+.differ-card .sep{
+  position:absolute;top:54px;right:-30px;
+  font-family:"Anton",sans-serif;font-size:32px;color:var(--brick);opacity:.35;
+}
+.differ-card:last-child .sep{display:none}
+
+@media (max-width:900px){
+  .differs{grid-template-columns:1fr;gap:60px}
+  .differ-card .sep{display:none}
+}
+
+/* ============ CONTATO ============ */
+.contact{position:relative;color:var(--cream);overflow:hidden;background:#160b06}
+.contact .bg{position:absolute;inset:0;opacity:.95}
+.contact::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(105deg, rgba(22,11,6,.96) 0%, rgba(22,11,6,.82) 50%, rgba(22,11,6,.6) 100%);
+}
+.contact .container{position:relative;z-index:2}
+.contact .eyebrow{color:var(--mustard)}
+.contact .eyebrow .dash{background:var(--mustard)}
+.contact .section-title{color:var(--cream)}
+.contact .section-title .it{color:var(--mustard)}
+
+.contact-grid{
+  display:grid;grid-template-columns: 1.05fr 1fr;gap:80px;margin-top:60px;align-items:start;
+}
+.info{display:flex;flex-direction:column;gap:30px}
+.info-row{
+  display:grid;grid-template-columns: 48px 1fr;gap:22px;align-items:start;
+  padding: 22px 0;border-bottom:1px solid rgba(245,234,210,.1);
+}
+.info-row:first-child{border-top:1px solid rgba(245,234,210,.1)}
+.info-row .ic{
+  width:48px;height:48px;border-radius:50%;
+  background: rgba(212,162,76,.12);
+  color:var(--mustard);
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(212,162,76,.3);
+}
+.info-row .ic svg{width:22px;height:22px}
+.info-row .label{
+  font-family:"Oswald",sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;
+  color: rgba(245,234,210,.55);margin-bottom:6px;
+}
+.info-row .value{
+  font-family:"Manrope",sans-serif;font-size:18px;color:var(--cream);line-height:1.45;
+}
+.info-row .value a{
+  border-bottom:1px solid transparent;transition:border-color .2s;
+}
+.info-row .value a:hover{border-color:var(--mustard)}
+.info-row .hours{
+  display:grid;grid-template-columns: 1fr auto;gap:8px;
+  font-family:"Oswald",sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  color:rgba(245,234,210,.78);
+}
+.info-row .hours .h-row{display:contents}
+.info-row .hours .h-row:nth-child(even) span:first-child{color:rgba(245,234,210,.55)}
+
+.map-card{
+  background:rgba(245,234,210,.04);
+  border:1px solid rgba(245,234,210,.1);
+  padding:32px;
+  position:relative;
+  overflow:hidden;
+}
+.map-card::before{
+  content:"";position:absolute;inset:0;opacity:.3;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 500'><rect fill='%231a0e08' width='400' height='500'/><g stroke='%23d4a24c' stroke-width='.6' fill='none' opacity='.5'><path d='M0 110 Q100 90 200 130 T400 100'/><path d='M0 220 Q120 200 200 250 T400 230'/><path d='M0 340 Q90 320 200 360 T400 320'/><path d='M0 440 Q120 420 200 460 T400 430'/><path d='M40 0 L80 500'/><path d='M180 0 L150 500'/><path d='M280 0 L310 500'/></g></svg>");
+  background-size:cover;
+}
+.map-card-inner{position:relative;z-index:1}
+.map-pin{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:64px;height:64px;border-radius:50%;
+  background:var(--brick);color:var(--cream);
+  margin-bottom:22px;
+  box-shadow: 0 0 0 6px rgba(139,52,22,.25);
+}
+.map-pin svg{width:30px;height:30px}
+.map-card h3{
+  font-family:"Anton",sans-serif;font-weight:400;
+  font-size:36px;line-height:1;letter-spacing:.02em;
+  margin:0 0 12px;color:var(--cream);
+}
+.map-card p{font-size:16px;line-height:1.6;color:rgba(245,234,210,.75);margin:0 0 24px}
+.map-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-whats{
+  background:#1faa55;color:#fff;
+}
+.btn-whats:hover{background:#27c065;transform:translateY(-2px)}
+
+@media (max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:60px}
+}
+
+/* ============ FOOTER ============ */
+footer{
+  background:#0e0703;color:rgba(245,234,210,.6);
+  padding: 60px 32px 40px;
+  border-top:1px solid rgba(245,234,210,.06);
+}
+.foot-inner{
+  max-width:1280px;margin:0 auto;
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:30px;
+}
+.foot-brand{display:flex;align-items:center;gap:16px}
+.foot-brand .logo{
+  width:56px;height:56px;border-radius:50%;background:#000;overflow:hidden;
+  box-shadow:0 0 0 2px var(--mustard);
+}
+.foot-brand .logo img{width:100%;height:100%;object-fit:cover}
+.foot-brand .word{
+  font-family:"Anton",sans-serif;color:var(--cream);font-size:24px;letter-spacing:.04em;line-height:1;
+}
+.foot-brand .word small{
+  font-family:"Caveat",cursive;color:var(--mustard);font-size:14px;display:block;margin-top:4px;letter-spacing:.02em;
+}
+.socials{display:flex;gap:12px}
+.socials a{
+  width:46px;height:46px;border-radius:50%;
+  border:1px solid rgba(245,234,210,.2);
+  display:flex;align-items:center;justify-content:center;
+  color: rgba(245,234,210,.75);transition: all .2s;
+}
+.socials a:hover{
+  background:var(--mustard);color:var(--ink);border-color:var(--mustard);transform:translateY(-2px);
+}
+.socials a svg{width:18px;height:18px}
+.copy{
+  font-family:"Oswald",sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(245,234,210,.4);
+  text-align:center;
+}
+.foot-bottom{
+  max-width:1280px;margin:32px auto 0;padding-top:28px;
+  border-top:1px solid rgba(245,234,210,.06);
+}
+
+/* ============ MARQUEE ACCENT ============ */
+.marquee{
+  background:var(--brick);
+  color:var(--cream);
+  overflow:hidden;
+  border-block:2px solid var(--ink);
+}
+.marquee .track{
+  display:flex;gap:60px;
+  white-space:nowrap;
+  font-family:"Anton",sans-serif;font-size:28px;letter-spacing:.06em;text-transform:uppercase;
+  padding:18px 0;
+  animation: scroll 32s linear infinite;
+}
+.marquee .track span{display:inline-flex;align-items:center;gap:60px}
+.marquee .track .dot{
+  width:10px;height:10px;background:var(--mustard);border-radius:50%;display:inline-block;
+}
+@keyframes scroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+
+/* ============ Utility BG images via CSS to avoid broken alt ============ */
+.bg-burger-hero{background: url("assets/burger-hero.jpg") center/cover no-repeat}
+.bg-burger-monster{background: url("assets/burger-monster.jpg") center/cover no-repeat}
+.bg-ambient{
+  background:
+    linear-gradient(135deg, rgba(0,0,0,.4), rgba(0,0,0,.0)),
+    url("assets/burger-hero.jpg") center/cover no-repeat;
+  filter: saturate(.85) brightness(.85);
+}
+
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="logo"><img src="assets/logo.jpg" alt="Broering Burguer" /></span>
+      <span class="word">BROERING<small>o melhor de São José · est. 2022</small></span>
+    </a>
+    <div class="nav-links">
+      <a href="#sobre">Sobre</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#diferenciais">Diferenciais</a>
+      <a href="#contato">Contato</a>
+    </div>
+    <a class="nav-cta" href="https://app.anota.ai/p/broering-burguer-1" target="_blank" rel="noopener">Fazer pedido</a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="bg brick"></div>
+  <div class="hero-inner">
+    <div>
+      <span class="hero-eyebrow"><span class="dash"></span> Hamburgueria Artesanal · São José / SC</span>
+      <h1>
+        Broering<br/>
+        <span class="row2">Burguer.</span>
+      </h1>
+      <span class="script">— o melhor de São José.</span>
+      <p class="hero-sub">
+        Pão artesanal, Angus 100% artesanal e maionese da casa com especiarias.
+        Hambúrgueres feitos sem pressa, do jeitinho que a vovó faria — se a vovó tivesse uma chapa.
+      </p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://app.anota.ai/p/broering-burguer-1" target="_blank" rel="noopener">Fazer pedido <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="#contato">Como chegar</a>
+      </div>
+    </div>
+
+    <div style="position:relative">
+      <div class="hero-stamp" aria-hidden="true">
+        <div>
+          <strong>2022</strong>
+          desde
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="assets/burger-hero.jpg" alt="Hambúrguer artesanal Broering Burguer" />
+        <div class="tag">
+          <span class="name">BBB · Bacon</span>
+          <span class="price">R$ 37,99</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-meta">
+    <div class="hero-meta-inner">
+      <span><span class="dot"></span>Aberto até 01h30</span>
+      <span><b>Sem</b> pedido mínimo</span>
+      <span>Delivery <b>·</b> Retirada <b>·</b> Salão</span>
+      <span>São José / SC</span>
+    </div>
+  </div>
+</header>
+
+<!-- marquee accent -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Pão Artesanal <span class="dot"></span> Angus 100% Artesanal <span class="dot"></span> Maionese da Casa <span class="dot"></span> Cervejas Geladas <span class="dot"></span> Costela &amp; Picanha <span class="dot"></span> O Melhor de São José <span class="dot"></span></span>
+    <span>Pão Artesanal <span class="dot"></span> Angus 100% Artesanal <span class="dot"></span> Maionese da Casa <span class="dot"></span> Cervejas Geladas <span class="dot"></span> Costela &amp; Picanha <span class="dot"></span> O Melhor de São José <span class="dot"></span></span>
+  </div>
+</div>
+
+<!-- ============ SOBRE ============ -->
+<section class="sobre paper" id="sobre">
+  <div class="container">
+    <div class="sobre-grid">
+      <div>
+        <span class="eyebrow"><span class="dash"></span> Nossa história</span>
+        <h2 class="section-title">Boteco artesanal,<br/><span class="it">com a mão da casa.</span></h2>
+        <p>
+          A Broering Burguer nasceu em 2022, num cantinho de São José, com uma ideia simples:
+          fazer hambúrguer de verdade — com pão saído do forno, Angus 100% artesanal moído na hora
+          e aquela maionese da casa com especiarias que vira saudade. Sem fórmula pronta, sem
+          atalho, sem pressa.
+        </p>
+        <p>
+          O ambiente é boteco: madeira, tijolo aparente, cerveja gelada e gente conversando alto.
+          Cada burger sai com batata fresca, refri 200ml e uma vontade enorme de você voltar.
+          Aqui a gente trata cliente como vizinho — daqueles que entram pela porta da cozinha.
+        </p>
+        <div class="stats">
+          <div class="stat"><b>2022</b><span>Desde</span></div>
+          <div class="stat"><b>18</b><span>sabores no cardápio</span></div>
+          <div class="stat"><b>5,1k</b><span>no Instagram</span></div>
+        </div>
+      </div>
+
+      <div style="position:relative">
+        <div class="sobre-since" aria-hidden="true">
+          Boteco<b>BB</b>desde 2022
+        </div>
+        <div class="sobre-photo">
+          <div class="bg bg-ambient"></div>
+          <div class="frame-text">
+            “feito com fogo, calma e<br/>cerveja gelada do lado”
+            <b style="display:block;margin-top:14px;">— a casa.</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CARDÁPIO ============ -->
+<section class="menu" id="cardapio">
+  <div class="container">
+    <div class="menu-head">
+      <div>
+        <span class="eyebrow"><span class="dash"></span> Destaques do cardápio</span>
+        <h2 class="section-title">Os mais<br/><span class="it">pedidos da casa.</span></h2>
+      </div>
+      <p class="right">
+        Todos acompanham<br/>
+        <b>batata frita + refri 200ml.</b>
+      </p>
+    </div>
+
+    <div class="menu-grid">
+
+      <article class="dish">
+        <div class="photo">
+          <img src="assets/burger-hero.jpg" alt="BBS I Broering Burguer Salada" />
+          <span class="code">BBS I</span>
+          <span class="price">R$ 27,99</span>
+        </div>
+        <div class="body">
+          <h3>Broering Salada</h3>
+          <p>Pão gourmet, Angus 100% artesanal 90g, alface crespa, tomate fresco, picles agridoce Hemmer e maionese da casa.</p>
+          <div class="meta"><span>★ Mais pedido</span><span class="heart">♥ Clássico</span></div>
+        </div>
+      </article>
+
+      <article class="dish">
+        <div class="photo">
+          <img src="assets/burger-monster.jpg" alt="BBM Broering Burguer Monster" />
+          <span class="code">BBM</span>
+          <span class="price">R$ 35,99</span>
+        </div>
+        <div class="body">
+          <h3>Burguer Monster</h3>
+          <p>Pão gourmet ou brioche, 3 carnes Angus 100% artesanal 90g, 3 fatias de cheddar, molho barbecue e maionese da casa.</p>
+          <div class="meta"><span>★ Mais pedido</span><span class="heart">♥ Família</span></div>
+        </div>
+      </article>
+
+      <article class="dish">
+        <div class="photo">
+          <img src="assets/burger-hero.jpg" alt="BBB Broering Burguer Bacon" />
+          <span class="code">BBB</span>
+          <span class="price">R$ 37,99</span>
+        </div>
+        <div class="body">
+          <h3>Burguer Bacon</h3>
+          <p>Pão gourmet, brioche ou roseta, Angus 100% artesanal 180g, bacon crocante, alface, tomate e maionese da casa.</p>
+          <div class="meta"><span>★ Best-seller</span><span class="heart">♥ Defumado</span></div>
+        </div>
+      </article>
+
+      <article class="dish">
+        <div class="photo">
+          <img src="assets/burger-monster.jpg" alt="BBP Broering Burguer Picanha" />
+          <span class="code">BBP</span>
+          <span class="price">R$ 41,99</span>
+        </div>
+        <div class="body">
+          <h3>Burguer Picanha</h3>
+          <p>Pão gourmet, brioche ou roseta, picanha pura artesanal 180g, alface, tomate, cebola caramelizada e maionese da casa.</p>
+          <div class="meta"><span>★ Premium</span><span class="heart">♥ Especial</span></div>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="menu-cta">
+      <a class="btn btn-primary" href="https://app.anota.ai/p/broering-burguer-1" target="_blank" rel="noopener">Ver cardápio completo <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="differ" id="diferenciais">
+  <div class="container">
+    <div class="differ-head">
+      <span class="eyebrow"><span class="dash"></span> Nossos diferenciais <span class="dash"></span></span>
+      <h2 class="section-title">Três coisas que <span class="it">nunca</span> abrimos mão.</h2>
+      <p class="lead">A casa é simples, mas o capricho é grande. O que faz a Broering Burguer ter gosto de Broering Burguer:</p>
+    </div>
+
+    <div class="differs">
+      <div class="differ-card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 36c0-9 9-16 22-16s22 7 22 16"/>
+            <path d="M8 38h48v6c0 3-3 6-7 6H15c-4 0-7-3-7-6v-6z"/>
+            <path d="M18 30c1-2 3-3 5-3M28 28c1-2 3-3 5-3M38 30c1-2 3-3 5-3"/>
+          </svg>
+        </div>
+        <span class="script">do forno da casa</span>
+        <h3>Pão artesanal</h3>
+        <p>Pão gourmet, brioche, roseta ou australiano com mel. Cada burger no pão certo, assado no dia.</p>
+        <span class="sep">/</span>
+      </div>
+
+      <div class="differ-card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 32c0-8 9-14 20-14s20 6 20 14"/>
+            <path d="M52 32c0 7-9 13-20 13S12 39 12 32"/>
+            <path d="M22 26c2-3 6-5 10-5M40 26c-1-2-3-3-5-3"/>
+            <path d="M30 38l-3 4M36 38l3 4"/>
+          </svg>
+        </div>
+        <span class="script">Angus 100% artesanal</span>
+        <h3>Carne selecionada</h3>
+        <p>Angus artesanal moído na hora — sem mistura, sem conservante. Costela, picanha e suíno como opções premium.</p>
+        <span class="sep">/</span>
+      </div>
+
+      <div class="differ-card">
+        <div class="icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10h20l-2 8H24l-2-8z"/>
+            <path d="M24 18v8c0 4-4 6-4 14v16c0 2 2 4 4 4h16c2 0 4-2 4-4V40c0-8-4-10-4-14v-8"/>
+            <path d="M26 44h12M28 52h8"/>
+          </svg>
+        </div>
+        <span class="script">receita da casa</span>
+        <h3>Molhos da casa</h3>
+        <p>A maionese com especiarias que vira saudade, barbecue, geleia de pimenta e picles agridoce Hemmer.</p>
+        <span class="sep">/</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section class="contact" id="contato">
+  <div class="bg wood"></div>
+  <div class="container">
+    <span class="eyebrow"><span class="dash"></span> Localização &amp; contato</span>
+    <h2 class="section-title">Vem comer<br/><span class="it">com a gente.</span></h2>
+    <p class="lead" style="color:rgba(245,234,210,.7)">
+      Estamos em Forquilhinhas, São José. Salão, retirada ou delivery — você escolhe o jeito,
+      a gente cuida da chapa.
+    </p>
+
+    <div class="contact-grid">
+      <div class="info">
+        <div class="info-row">
+          <div class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3"/></svg>
+          </div>
+          <div>
+            <div class="label">Endereço</div>
+            <div class="value">Rua Princesa Isabel, 55 · Forquilhinhas<br/>São José / SC · CEP 88106-730</div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92V21a1 1 0 0 1-1.11 1 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 3.19 4.11 1 1 0 0 1 4.18 3h4.09a1 1 0 0 1 1 .75 11.36 11.36 0 0 0 .62 2.5 1 1 0 0 1-.22 1.05L8.09 9.27a16 16 0 0 0 6 6l1.97-1.58a1 1 0 0 1 1.05-.22 11.36 11.36 0 0 0 2.5.62 1 1 0 0 1 .75 1z"/></svg>
+          </div>
+          <div>
+            <div class="label">WhatsApp</div>
+            <div class="value"><a href="https://wa.me/5548984653311">(48) 98465-3311</a></div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </div>
+          <div>
+            <div class="label">Instagram</div>
+            <div class="value"><a href="https://instagram.com/broeringburguer" target="_blank" rel="noopener">@broeringburguer</a></div>
+          </div>
+        </div>
+
+        <div class="info-row">
+          <div class="ic" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <div class="label">Horários</div>
+            <div class="hours" style="margin-top:6px">
+              <div class="h-row"><span>Segunda a Quinta</span><span>19h30 — 00h30</span></div>
+              <div class="h-row"><span>Sexta &amp; Sábado</span><span>19h30 — 01h30</span></div>
+              <div class="h-row"><span>Domingo</span><span>fechado</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-card">
+        <div class="map-card-inner">
+          <div class="map-pin" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-7 8-13a8 8 0 1 0-16 0c0 6 8 13 8 13z"/><circle cx="12" cy="9" r="3" fill="currentColor" stroke="none"/></svg>
+          </div>
+          <h3>Bate-papo, chapa quente e cerveja gelada.</h3>
+          <p>Chame no WhatsApp ou veja a rota até a gente. Aceitamos reservas pra grupos a partir de 6 pessoas — só avisar com um dia de antecedência.</p>
+          <div style="margin-bottom:24px;padding:18px;background:rgba(245,234,210,.05);border:1px dashed rgba(245,234,210,.18);">
+            <div style="font-family:'Oswald',sans-serif;font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:rgba(245,234,210,.5);margin-bottom:12px;">Formas de pagamento</div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <span style="background:rgba(245,234,210,.08);border:1px solid rgba(245,234,210,.15);padding:7px 13px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--mustard-2);">Pix</span>
+              <span style="background:rgba(245,234,210,.08);border:1px solid rgba(245,234,210,.15);padding:7px 13px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.8);">Dinheiro</span>
+              <span style="background:rgba(245,234,210,.08);border:1px solid rgba(245,234,210,.15);padding:7px 13px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.8);">Cartão de crédito</span>
+              <span style="background:rgba(245,234,210,.08);border:1px solid rgba(245,234,210,.15);padding:7px 13px;font-family:'Oswald',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,234,210,.8);">Cartão de débito</span>
+            </div>
+          </div>
+          <div class="map-actions">
+            <a class="btn btn-whats" href="https://wa.me/5548984653311">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5.1-1.3A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.3l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20zm4.6-5.9c-.3-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.6 6.6 0 0 1-3.4-3 .4.4 0 0 1 .1-.5l.4-.4.2-.4a.4.4 0 0 0 0-.4l-.7-1.8c-.2-.4-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7s1.9 3 4.6 4.2c.6.3 1.1.4 1.5.5a3.5 3.5 0 0 0 1.6.1 2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.2c-.1-.1-.3-.2-.6-.3z"/></svg>
+              WhatsApp
+            </a>
+            <a class="btn btn-primary" href="https://app.anota.ai/p/broering-burguer-1" target="_blank" rel="noopener">Fazer pedido <span class="arrow">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="foot-inner">
+    <a class="foot-brand" href="#top">
+      <span class="logo"><img src="assets/logo.jpg" alt="Broering Burguer" /></span>
+      <span class="word">BROERING BURGUER<small>o melhor de São José · desde 2022</small></span>
+    </a>
+    <div class="socials">
+      <a href="#" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+      </a>
+      <a href="#" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 22v-8h3l1-4h-4V7.5c0-1.2.4-2 2-2h2V2.1A28 28 0 0 0 14 2c-3 0-5 1.8-5 5.1V10H6v4h3v8h4z"/></svg>
+      </a>
+      <a href="#" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11 11 0 0 0 3.4 17.1L2 22l5.1-1.3A11 11 0 1 0 20.5 3.5zM12 20a8 8 0 0 1-4.3-1.3l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 20z"/></svg>
+      </a>
+      <a href="#" aria-label="iFood">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18"/><path d="M5 11v6a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3v-6"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <p class="copy">© 2026 Broering Burguer · Feito com fogo em São José / SC</p>
+  </div>
+</footer>
+
+</body>
+</html>
