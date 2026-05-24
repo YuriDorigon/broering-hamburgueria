@@ -4,7 +4,7 @@ Site landing page para a **Broering Burguer**, hamburgueria artesanal localizada
 
 ## 🔗 Links
 
-- **Site ao vivo:** https://broering-hamburgueria-yuridorigons-projects.vercel.app
+- **Site ao vivo:** https://yuridorigon.github.io/broering-hamburgueria/
 - **Repositório:** https://github.com/YuriDorigon/broering-hamburgueria
 - **Pedido online:** https://app.anota.ai/p/broering-burguer-1
 - **Instagram:** https://instagram.com/broeringburguer
